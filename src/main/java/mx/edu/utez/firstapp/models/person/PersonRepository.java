@@ -5,12 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    boolean findById(long id);
+    Optional findById(long id);
 
-    Person findByCurp(String curp);
+    Optional findByCurp(String curp);
 
     List<Person> findByGender(String gender);
 }
