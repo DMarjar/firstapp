@@ -35,4 +35,15 @@ public class Person {
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private User user;
+
+    public Person(String name, String surname, String lastName, String birthdate, String curp, String gender, boolean status, User user) {
+        this.name = name;
+        this.surname = surname;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+        this.curp = curp;
+        this.gender = gender;
+        this.status = status;
+        this.user = user;
+    }
 }
