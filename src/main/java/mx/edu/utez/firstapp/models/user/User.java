@@ -1,5 +1,6 @@
 package mx.edu.utez.firstapp.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,16 +27,17 @@ public class User {
     private String password;
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private boolean status;
-    @Column(nullable = false)
+    @Column()
     private String lastLogin;
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private boolean blocked;
-    @Column(nullable = false)
+    @Column()
     private String token;
     @OneToOne
-    @MapsId
     @JoinColumn(name = "person_id", referencedColumnName = "id", unique = true)
+    @JsonIgnore
     private Person person;
-    @ManyToMany(mappedBy = "users") // mappedBy is used to indicate that the relationship is owned by the "users" field in the Role entity
+    @ManyToMany(mappedBy = "users")
+    // mappedBy is used to indicate that the relationship is owned by the "users" field in the Role entity
     private Set<Role> roles;
 }
