@@ -1,5 +1,6 @@
 package mx.edu.utez.firstapp.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,8 +34,8 @@ public class User {
     @Column(nullable = false)
     private String token;
     @OneToOne
-    @MapsId
     @JoinColumn(name = "person_id", referencedColumnName = "id", unique = true)
+    @JsonIgnore
     private Person person;
     @ManyToMany(mappedBy = "users") // mappedBy is used to indicate that the relationship is owned by the "users" field in the Role entity
     private Set<Role> roles;
