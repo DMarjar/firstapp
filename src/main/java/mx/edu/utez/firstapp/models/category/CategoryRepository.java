@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-
+    // Actualizar el status
     @Query(
             value = "UPDATE category SET status = :status WHERE id = :id",
             nativeQuery = true
