@@ -42,4 +42,35 @@ public class PersonController {
                 HttpStatus.CREATED
         );
     }
+
+    // GET ONE
+    @GetMapping("/{id}")
+    // URL: http://localhost:8080/api-firstapp/person/{id}
+    public ResponseEntity<CustomResponse<Person>> getOne(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(
+                this.service.getOne(id),
+                HttpStatus.OK
+        );
+    }
+
+    // UPDATE
+    @PutMapping("/{id}")
+    // URL: http://localhost:8080/api-firstapp/person/{id}
+    public ResponseEntity<CustomResponse<Person>> update(@PathVariable("id") Long id, @RequestBody PersonDto person) {
+        return new ResponseEntity<>(
+                this.service.update(person.getPerson()),
+                HttpStatus.OK
+        );
+    }
+
+    // DELETE
+    @DeleteMapping("/{id}")
+    // URL: http://localhost:8080/api-firstapp/person/{id}
+    public ResponseEntity<CustomResponse<Boolean>> delete(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(
+                this.service.delete(id), HttpStatus.OK
+        );
+    }
+
+
 }

@@ -20,6 +20,7 @@ public class CategoryController {
     @Autowired
     private CategoryService service;
 
+    // GET
     @GetMapping("/")
     // URL: http://localhost:8080/api-firstapp/category/
     public ResponseEntity<CustomResponse<List<Category>>> getAll() {
@@ -28,6 +29,7 @@ public class CategoryController {
                 HttpStatus.OK);
     }
 
+    // POST
     @PostMapping("/")
     // URL: http://localhost:8080/api-firstapp/category/
     public ResponseEntity<CustomResponse<Category>> insert(@RequestBody CategoryDto category, @Valid BindingResult result) {
@@ -41,6 +43,7 @@ public class CategoryController {
         );
     }
 
+    // GET ONE
     @PutMapping("/{id}")
     // URL: http://localhost:8080/api-firstapp/category/{id}
     public ResponseEntity<CustomResponse<Category>> update(@PathVariable("id") Long id, @RequestBody CategoryDto category, @Valid BindingResult result) {
@@ -54,6 +57,7 @@ public class CategoryController {
         );
     }
 
+    // UPDATE
     @PatchMapping("/{id}")
     // URL: http://localhost:8080/api-firstapp/category/{id}
     public ResponseEntity<CustomResponse<Boolean>> patch(@PathVariable("id") Long id, @RequestBody CategoryDto category, @Valid BindingResult result) {
@@ -67,4 +71,12 @@ public class CategoryController {
         );
     }
 
+    // DELETE
+    @DeleteMapping("/{id}")
+    // URL: http://localhost:8080/api-firstapp/category/{id}
+    public ResponseEntity<CustomResponse<Boolean>> delete(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(
+                this.service.delete(id), HttpStatus.OK
+        );
+    }
 }
